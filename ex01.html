@@ -1,0 +1,101 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>상품관리</title>
+    <link rel="stylesheet" href="common.css"/>
+</head>
+<body>
+    <div id="page">
+        <div id="top">
+            <h1>상품관리</h1>
+        </div> 
+       
+        <div id="menu">
+            <span><a href="ex01.html">상품관리</a> | </span>
+            <span><a href="ex02.html">회원관리</a></span>
+            <span><a href="ex02.html">주소관리</a> | </span>
+        </div>
+
+        <div id="center">
+            <form name="frm">
+                <table>
+                    <tr>
+                        <th width=100>상품코드</th>
+                        <td width=500><input type="text" name="code" value="P001"></td>
+                    </tr>  
+                    <tr>
+                        <th width=100>상품이름</th>
+                        <td width=500><input type="text" name="name" size="50"></td>
+                    </tr> 
+                    <tr>
+                        <th width=100>상품가격</th>
+                        <td width=500><input type="text" name="price" size="5">원</td>
+                    </tr>
+                    <tr>
+                        <th width=100>상품판매가</th>
+                        <td width=500><input type="text" name="company" size="10"></td>
+                    </tr>
+                </table>
+                <div id="buttons" >
+                    <input type="submit" value="등록" class="button">
+                    <input type="reset" value="취소" class="button">
+                </div>
+                
+            </form>
+            <hr>
+                <table id="list" style="margin:0px  auto; margin-top:20px;"></table>
+        </div>
+        <div id="bottom">
+            <h5>Copyright 2022. 인천일보아카데미 Reserce All Right.</h5>
+        </div>    
+    </div>
+</body>
+<script>
+    $(frm).on("submit", function(e){//frm submit버튼을클릭한 경우
+        e.preventDefault(); //submit를 방지한다
+        //유형성체크
+        let code=$(frm.code).val();
+        let name=$(frm.name).val();
+        let price=$(frm.price).val();
+        let company=$(frm.company).val();
+        
+        if(name==""){
+            alert("이름을 입력하세요!");
+            $(frm.name).focus();
+        }else if(price==""){
+            alert("가격을 입력하세요!");
+            $(frm.price).focus();
+        }else if(company==""){
+            alert("판매처를 입력하세요!");
+            $(frm.company).focus();
+        }else{
+            if(!confirm("정말로 등록하실래요?")) return;
+            let str = "<tr class='row'>";
+                str += "<td width=50 class='code'>" + code + "</td>";
+                str += "<td width=150>" + name + "</td>";
+                str += "<td width=250>" + price + "</td>"
+                str += "<td width=250>" + company + "</td>"
+                str += "<td width=100><button>삭제</button>";
+                str += "</tr>";
+
+                $("#list").append(str);
+                $(frm.code).val("");
+                $(frm.name).val("");
+                $(frm.price).val("");
+                $(frm.company).val("");
+        
+        }
+      
+    });
+ //삭제버튼을 클릭한경우
+ $("#list").on("click", ".row button", function(){
+            let row=$(this).parent().parent();
+            let id=row.find(".id").html();
+            let name=row.find(".name").html();
+            if(!confirm(id + ":" + name + "을(를) 삭제하실레요?")) return;
+            row.remove();
+        });
+
+
+</script>
+</html>

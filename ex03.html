@@ -1,0 +1,95 @@
+<html>
+<head>
+    <title>주석관리</title>
+    <link rel="stylesheet" href="common.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        .row:nth-child(2n){color: tomato}
+    </style>
+
+</head>
+<body>
+    <div id="page">
+        <div id="top">
+            <h1>회원관리</h1>
+        </div>
+        
+        <div id="menu">
+            <span><a href="ex01.html">상품관리</a> | </span>
+            <span><a href="ex02.html">회원관리</a> | </span>
+            <span><a href="ex02.html">주소관리</a> | </span>
+        </div>
+        <div id="center">
+            <form name="form">
+            <table>
+                <tr>
+                    <td width=100>성명</td>
+                    <td width=500><input type="text" name="name"size="10"></td>
+                </tr>
+                <tr>
+                    <td width=100>주소</td>
+                    <td width=500><input type="text" name="address"size="50"></td>
+                </tr>
+                <tr>
+                    <td width=100>전화</td>
+                    <td width=500><input type="text" name="tel"size="20"></td>
+                </tr>
+
+            </table>
+            <div id="buttons">
+                <input type="submit" class="button" value="등록">
+                <input type="reset" class="button" value="취소">
+
+            </div>
+        </form>
+        <hr>
+        <table id="list" style="margin:0px  auto; margin-top:20px;"></table>
+        <div>
+        </div>
+        <div id="bottom">
+            <h5>Copyright 2022. 인천일보아카데미 Reserce All Right.</h5>
+        </div> 
+        </body>
+        
+        <script>
+            $(form).on("submit",function(e){  //frm submit버튼을 클릭한 경우
+                e.preventDefault(); //submit를 방지한다.
+                //유효성체크
+                let name=$(form.name).val();
+                let tel=$(form.tel).val();
+                let address=$(form.address).val();
+        
+                if(name==""){
+                    alert("이름을 입력하세요!")
+                    $(form.name).focus();
+                }else if(tel==""){
+                    alert("전화번호 입력하세요!")
+                    $(form.tel).focus();
+                
+                }else if(address==""){
+                    alert("주소 선택하세요!")
+                    $(form.address).focus();
+                }else{
+                    if(!confirm("주소를 등록하실래요?")) return;
+                    let str = "<tr class='row'>";
+                        str += "<td width =50class='name'>" + name + "</td>";
+                        str += "<td width=150>" +tel +"</td>";
+                        str += "<td width=250>" + address + "</td>";
+                        str += "<td width=100><button>삭제</button></td>";
+                        str += "</tr>";
+
+                    $("#list") .append(str); 
+                    $(frm.name).val("");
+                    $(frm.address).val("");
+                    $(frm.tel).val("");           
+                }
+        });
+        //삭제버튼을 클릭한경우
+        $("#list").on("click", ".row button", function(){
+            let row=$(this).parent().parent();
+            let name=row.find(".name").html();
+            if(!confirm(name + "을(를)삭제하실레요?")) return;
+            row.remove();
+        });
+        </script>
+        </html>

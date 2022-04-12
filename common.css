@@ -1,0 +1,26 @@
+* {margin:0px; padding:0px;}
+        body {width:960px;margin:0px auto;background: gray;}
+        #page {background: bisque; height:1500px;}
+        h1, h5 {text-align: center; padding-top: 20px;}
+        table {margin:0px auto; margin-top: 50px; border-collapse: collapse;}
+        td, th {border:1px solid green; padding:5px;}
+        #buttons {width: 600px; margin:0px auto; text-align:center; padding:20px;}
+        #buttons .button, button {
+            width:80px; 
+            padding:5px; 
+            background:rgb(226, 115, 211); 
+            color:rgb(13, 157, 240);
+            border-radius: 5px;
+            border:none;
+        }
+        input[table="text"] ,input[table="text"] 
+        {
+            padding: 5px;bottom: 1px solid gray ;
+        }
+        a{text-decoration: none; color: rgb(128, 0, 111); font-size: 15px;}
+        a:hover{color: rgb(111, 0, 255);}
+
+       
+    #menu {padding: 10px; border:1px dotted gray; margin-top:20px;}
+
+    .row:hover {background:sandybrown;color:coral;}
